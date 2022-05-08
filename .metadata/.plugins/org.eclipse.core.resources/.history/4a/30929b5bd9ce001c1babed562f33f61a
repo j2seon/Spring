@@ -1,0 +1,13 @@
+package com.fastcampus.ch2;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class RequestInfo1 {
+	@RequestMapping("/RequestInfo1")
+	public static void main(String[] args) {
+
+	}
+
+}

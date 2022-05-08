@@ -1,0 +1,17 @@
+package com.fastcampus.ch2;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class ExYoil {
+	@RequestMapping("/yoil")
+	public void main(String[] args) {
+		YoilTeller y = new YoilTeller();
+		
+		
+		
+		
+	}
+
+}
