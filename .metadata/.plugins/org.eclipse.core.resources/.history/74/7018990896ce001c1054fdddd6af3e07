@@ -1,0 +1,16 @@
+package com.fastcampus.ch2;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+//1.원격 호출 가능한 프로그램으로 등록 
+
+@Controller
+public class Hello {
+	//2.url과 메서드 연결 > hello라는 url과 main()이 연결되었다.
+	@RequestMapping("/hello")
+	public void main() { //
+		System.out.println("Hello"); //밑의 콘솔을 보면 출력이 되었다.
+	}
+}
+//브라우저에 나오지 않는이유는 System.out으로 콘솔에 출력했으니까!  

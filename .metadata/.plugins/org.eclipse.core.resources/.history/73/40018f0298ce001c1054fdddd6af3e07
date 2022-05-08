@@ -1,0 +1,23 @@
+package com.fastcampus.ch2;
+
+public class Main {
+	public static void main(String[] args) {
+		//Hello hello = new Hello();
+		//hello.main(); //private이라서 외부 호출불가.
+		
+		
+		/*그럼 아까는 왜 가능????
+		 * 
+		 * Reflection API를 사용 - 클래스 정보를 업고 다를 수 있는 강력한 기능 제공
+		 * java.lang.reflect를 제공한다.
+		 * 
+		 * */
+		
+		//Hello클래스의 Class객체(클래스의 정보를 담고있는 객체)를 얻어온다.
+		Class helloClass = Class.forName("com.fastcampus.ch2.Hello"); 
+		
+		
+		
+		
+	}
+}

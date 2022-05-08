@@ -1,0 +1,24 @@
+package com.fastcampus.ch2;
+
+import java.io.IOException;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class TwoDice {
+	@RequestMapping("/rollDice")
+	public void main(HttpServletResponse response ) throws IOException {
+		response.getWriter();
+		
+		
+		
+		
+		
+	}
+
+}
