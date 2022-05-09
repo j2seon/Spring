@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TwoDice {
 	@RequestMapping("/rollDice")
 	public void main(HttpServletResponse response) throws IOException {
-		//·£´ıÀ¸·Î ³ª¿À°ÔÇÏ±â
+		//ëœë¤ìœ¼ë¡œ ë³€í•˜ëŠ” ìˆ˜ ì§€ì •
 		int idx1=(int)(Math.random()*6)+1;
 		int idx2=(int)(Math.random()*6)+1;
 		

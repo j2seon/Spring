@@ -32,5 +32,8 @@ public class RequestInfo {
         System.out.println("request.getRemoteAddr()="+request.getRemoteAddr()); // 원격 ip주소
         System.out.println("request.getRemoteHost()="+request.getRemoteHost()); // 원격 호스트 또는 ip주소
         System.out.println("request.getRemotePort()="+request.getRemotePort()); // 원격 포트
+        
+        
+        
     }
 }
