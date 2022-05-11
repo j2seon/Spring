@@ -22,8 +22,8 @@ public class YoilTellerMVC3 {
 		//반환타입을 void로 하고  view의 이름을 반환하지 않을 경우 위의 url인 getYoilMVC3가 이름으로 설정된다/
 		
 		 //1.유효성 검사를 하는 메서드를 만들어준다.
-		
-		
+	
+
 		//2. 요일계산
 		char yoil = getYoil(year, month, day); //WEB-INF/view/yoil.jsp > 반환하는 yoil이 String 이기 때문에 메서드의 반환타입을 변경해야한다.
 		

@@ -1,0 +1,40 @@
+<%@ page contentType="text/html;charset=utf-8"%>
+<%@ page import="java.util.Random" %>
+<%-- <%! 클래스 영역 %> --%>
+<%!  
+	int getRandomInt(int range){
+		return new Random().nextInt(range)+1;
+	}
+%>
+<%-- <%  메서드 영역 - service()의 내부 %> --%>
+<%
+	int idx1 = getRandomInt(6);
+	int idx2 = getRandomInt(6);
+%>
+<html>
+<head>
+	<title>twoDice.jsp</title>
+</head>
+<body>
+	<img src='resources/img/dice<%=idx1%>.jpg'>
+	<img src='resources/img/dice<%=idx2%>.jpg'>
+</body>
+</html>
+
+<!-- JSP란 html안에 자바코드가 있는것! 
+
+jsp요청이 오면 jspservlet이 받아서 인스턴스가 존재하는지 확인한다. jsp요청 > jspservlet(인스턴스유무확인)
+
+no>> twoDice.jsp > twoDice_jsp.java로 변환> 컴파일을 해서 > 객체를 생성 >>응답
+* 수정될때 마다 다시 변환작업을 거친다 >> 시간이 지연된다.
+
+서블릿 > 늦은초기화가 기본
+spring은 이를 개선하기위해 > early 초기화
+둘다 싱글톤으로 되어 있으나 초기화에 있어서 차이가 있다.
+
+jsp는 기본객체 존재 : 생성없이 사용할 수 있는 객체를 의미
+ex)request ,respones pageContext
+
+
+
+-->

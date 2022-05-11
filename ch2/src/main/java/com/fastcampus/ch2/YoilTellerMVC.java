@@ -26,19 +26,11 @@ public class YoilTellerMVC {
 		
 		ModelAndView mv =new ModelAndView(); // 잘쓰지는 않으나 알아두면 좋을 듯
 		
-		
-		 //1.유효성 검사
-//		if(!isValid(year,month,day))
-//			return "yoilError";
-//		
+	
 		//2. 요일계산
 		char yoil =getYoil(year, month, day);
 	    
-		//3. 계산한 결과를 모델에 저장
-//		model.addAttribute("year",year);
-//		model.addAttribute("month",month);
-//		model.addAttribute("day",day);
-//		model.addAttribute("yoil",yoil);
+		
 		mv.addObject("year",year);
 		mv.addObject("month",month);
 		mv.addObject("day",day);
@@ -55,10 +47,12 @@ public class YoilTellerMVC {
 	}
 
 	//유효성검사하는 메서드
-	private boolean isValid(int year, int month, int day) { //클래스 안에서만 사용하기 때문에 private!
-		return true;
-	}
-
+	private boolean isValid(int year, int month, int day) {    
+    	if(year==-1 || month==-1 || day==-1) 
+    		return false;
+    	
+    	return (1<=month && month<=12) && (1<=day && day<=31); // 간단히 체크 
+    }
 	//요일을 계산하는 메서드
 	private char getYoil(int year, int month, int day) {
 	     Calendar cal = Calendar.getInstance();

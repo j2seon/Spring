@@ -61,7 +61,6 @@ public class YoilTellerMVC2 {
 
 	
 
-	//요일을 계산하는 메서드
 	
 	
 

@@ -1,0 +1,9 @@
+package com.fastcampus.ch2;
+
+import javax.servlet.http.HttpServlet;
+//jsp와 서블릿은 거의 유사함! 
+
+
+public class HelloServlet extends HttpServlet{ //서블릿은 HttpServlet를 상속받아야한다.
+
+}
