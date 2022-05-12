@@ -15,7 +15,7 @@
 </c:forEach>
 <br>
 <c:if test="${not empty arr}"> <!-- if문  : 배열이 비어있지않으면-->
-	<c:forEach var="elem" items="${arr}" varStatus="status"><!-- for문  -->
+	<c:forEach var="elem" items="${arr}" varStatus="status"><!-- for문 status가 index랑 count를 가지고 있음,  -->
 		${status.count}. arr[${status.index}]=${elem}<BR><!-- count는 1부터 시작, index는 0부터-->
 		
 	</c:forEach>

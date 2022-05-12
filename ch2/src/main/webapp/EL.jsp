@@ -15,7 +15,7 @@
 <body>   
 	person.getCar().getColor()=<%=person.getCar().getColor()%> <br>
 	person.getCar().getColor()=${person.getCar().getColor()} <br>
-	person.getCar().getColor()=${person.car.color} <br>    
+	person.getCar().getColor()=${person.car.color} <br>   <!-- person.car.color 간단히 하려고 이렇게 쓴거임.  -->  
 	name=<%=request.getAttribute("name")%> <br>   
 	name=${requestScope.name} <br>
 	name=${name} <br> <!-- requestScope.name와 결국 같은의미임.  -->

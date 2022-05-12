@@ -9,19 +9,30 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 //
 @Controller
 public class YoilTellerMVC {
+	@ExceptionHandler(Exception.class) //에외를 처리하는 핸들러!!! >> 에러가 잡혔지만 해당 뷰의 내용을 꺼냄
+	public String catcher(Exception e) { 
+		e.printStackTrace();
+		return "yoilError";
+	}
+	
+	
 	@RequestMapping("/getYoilMVC") //http://localhost:8282/ch2/getYoilMVC?year=2021&month=10&day=1
 //	public void main(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //	public void main(String year, String month , String day, HttpServletResponse response) throws IOException {
 	//public String main(int year, int month , int day, Model model) throws IOException {//입력을 직접받는걸로 처리해서 코드가 간단해졌다! 
 //	public void main(int year, int month , int day, Model model) throws IOException {	 
 		//String 대신에 반환타입을 void로 하고 반환타입을 반환하지 않을 수 있다 그럼녀 view의 이름은 mapping된 url에 의해 이름이 결정된다
-	public ModelAndView main(int year, int month , int day) throws IOException {	 
+	public ModelAndView main(@RequestParam(required = true) int year, 
+			@RequestParam(required = true)int month ,
+			@RequestParam(required = true)int day) throws IOException {	 
 		// ModelAndView로도 할 수 있다.>> 객체 만들어줘야함
 		
 		ModelAndView mv =new ModelAndView(); // 잘쓰지는 않으나 알아두면 좋을 듯

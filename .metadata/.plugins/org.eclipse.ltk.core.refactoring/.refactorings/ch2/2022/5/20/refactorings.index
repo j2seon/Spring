@@ -14,3 +14,16 @@
 1652115161038	Rename resource 'getYoilMVC.jsp'
 1652185889817	Copy file
 1652186146442	Delete element
+1652355370124	Copy compilation unit
+1652355482669	Rename type 'YoilTellerMVC22'
+1652355515069	Copy compilation unit
+1652358378696	Rename type 'Mydate'
+1652360363428	Delete element
+1652360367004	Copy compilation unit
+1652361593672	Copy file
+1652361600520	Delete element
+1652372858897	Move 'registerInfo.jsp' to 'views'
+1652372908297	Move 'registerForm.html' to 'views'
+1652372927340	Move 'registerInfo.jsp' to 'webapp'
+1652372942438	Rename resource 'registerForm.html'
+1652375143679	Move 'registerInfo.jsp' to 'views'
