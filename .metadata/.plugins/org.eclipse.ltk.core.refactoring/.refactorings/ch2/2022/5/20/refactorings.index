@@ -27,3 +27,5 @@
 1652372927340	Move 'registerInfo.jsp' to 'webapp'
 1652372942438	Rename resource 'registerForm.html'
 1652375143679	Move 'registerInfo.jsp' to 'views'
+1652417292612	Move 'css' to 'resources'
+1652447994408	Copy compilation unit

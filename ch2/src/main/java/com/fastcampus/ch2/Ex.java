@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class Ex {
-	@RequestMapping("/ex")
+	@RequestMapping("/e")
 	public void main(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		
 		String name = request.getParameter("name");
@@ -27,7 +27,7 @@ public class Ex {
 		out.println("<head>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("ÀÌ¸§ : "+name+" ¼ºº° : "+gender);
+		out.println("ï¿½Ì¸ï¿½ : "+name+" ï¿½ï¿½ï¿½ï¿½ : "+gender);
 		out.println("</body>");
 		out.println("</html>");
 

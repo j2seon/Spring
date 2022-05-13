@@ -6,18 +6,20 @@ import java.net.URLEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class RegisterController {
-	//@RequestMapping(value = "/register/add", method =(RequestMethod.Get, RequestMethod.POST))
-	//@RequestMapping("/register/add") //신규회원 가입은 get으로 add는 단순히 화면만 보여준다.
-//	@GetMapping("/register/add")
-//	public String register() {
-//		return "registerForm"; // WEB-INF - views - registerForm.jsp
-//	}
+//	@RequestMapping("/register/add") //신규회원 가입은 get으로 add는 단순히 화면만 보여준다.
+		@RequestMapping(value="/register/add", method= {RequestMethod.GET,RequestMethod.POST}) // 신규회원 가입
+//		@GetMapping("/register/add") // 4.3부터 추가
+		public String register() {
+			return "registerForm";  // WEB-INF/views/registerForm.jsp
+		}
 	
 	/*	src > main> webapp > web-inf > Spring > appServlet> servlet-comtext.xml에 해당 문장 추가하면 위의 내용을 적을 필요가 없다.
 	 * 
@@ -29,12 +31,12 @@ public class RegisterController {
 	
 	//@RequestMapping(value = "/register/save", method = RequestMethod.POST) //포스트형식으로만 받을 수 있게 설정.
 	@PostMapping("/register/save")
-	public String save(User user,Model m) throws Exception {
+	public String save(@ModelAttribute("user") User user, Model m) throws Exception {
 		//1. 유효성 검사
-		if(!isVaild(user)) {
+		if(!isValid(user)) {
 			String msg = URLEncoder.encode("id를 잘못입력하셨습니다.", "UTF-8");
 			m.addAttribute("msg" , msg);
-			return "redirect:/register/add";
+			return "forward:/register/add";
 			//return "redirect:/register/add?msg="+msg;//재작성(rewriting)
 		}
 		
@@ -42,7 +44,7 @@ public class RegisterController {
 		return "registerInfo";
 	}
 
-	private boolean isVaild(User user) {
-		return true;
+	private boolean isValid(User user) {
+		return false;
 	}
 }
