@@ -2,20 +2,51 @@ package com.fastcampus.ch2;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+//PropertyEditor 양방향  
+//converter 단방향 이게 더 좋다. 
+//Formatter  양방향 @Numberformat(pattern="") @DateTimeFormat(pattern="")
+//우선순위 1. 커스텀 2. converter 3.PropertyEditor(디폴트)
+
+
+
+
 @Controller
+@RequestMapping("/register")
 public class RegisterController {
+	
+	
+	//날짜형식으로 변환해주는 메서드 선언
+	@InitBinder //컨트롤러 내에서만 사용가능하다.
+	public void toDate(WebDataBinder binder) {
+		//ConversionService conversionService = binder.getConversionService();
+		//System.out.println("conversionService="+conversionService);
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//		binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false)); //스프링이제공해주는 date에디터 사용
+		binder.registerCustomEditor(String[].class, new StringArrayPropertyEditor("#")); //구분자
+//		binder.registerCustomEditor(String[].class,"hobby", new StringArrayPropertyEditor("#")); //hobby에만 적용!!!
+	}
+	
+	
 //	@RequestMapping("/register/add") //신규회원 가입은 get으로 add는 단순히 화면만 보여준다.
-		@RequestMapping(value="/register/add", method= {RequestMethod.GET,RequestMethod.POST}) // 신규회원 가입
+		@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST}) // 신규회원 가입
 //		@GetMapping("/register/add") // 4.3부터 추가
 		public String register() {
 			return "registerForm";  // WEB-INF/views/registerForm.jsp
@@ -30,8 +61,10 @@ public class RegisterController {
 	
 	
 	//@RequestMapping(value = "/register/save", method = RequestMethod.POST) //포스트형식으로만 받을 수 있게 설정.
-	@PostMapping("/register/save")
-	public String save(@ModelAttribute("user") User user, Model m) throws Exception {
+	@PostMapping("/save")
+		public String save(User user,BindingResult result, Model m) throws Exception {
+		System.out.println("result = " + result);
+		System.out.println("user="+user);
 		//1. 유효성 검사
 		if(!isValid(user)) {
 			String msg = URLEncoder.encode("id를 잘못입력하셨습니다.", "UTF-8");
@@ -45,6 +78,6 @@ public class RegisterController {
 	}
 
 	private boolean isValid(User user) {
-		return false;
+		return true;
 	}
 }
