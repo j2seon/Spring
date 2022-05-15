@@ -11,34 +11,34 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-// í•„í„°ë¥¼ ì ìš©í•  ìš”ì²­ì˜ íŒ¨í„´ ì§€ì • - ëª¨ë“  ìš”ì²­ì— í•„í„°ë¥¼ ì ìš©.(urlPatterns="/*")
-@WebFilter(urlPatterns="/*") 
+// ÇÊÅÍ¸¦ Àû¿ëÇÒ ¿äÃ»ÀÇ ÆÐÅÏ ÁöÁ¤ - ¸ðµç ¿äÃ»¿¡ ÇÊÅÍ¸¦ Àû¿ë.
+@WebFilter(urlPatterns="/*")
 public class PerformanceFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// ì´ˆê¸°í™” ìž‘ì—…
+		// ÃÊ±âÈ­ ÀÛ¾÷
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// 1. ì „ì²˜ë¦¬ ìž‘ì—…
+		// 1. ÀüÃ³¸® ÀÛ¾÷
 		long startTime = System.currentTimeMillis();
 
-		// 2. ì„œë¸”ë¦¿ ë˜ëŠ” ë‹¤ìŒ í•„í„°ë¥¼ í˜¸ì¶œ
+		// 2. ¼­ºí¸´ ¶Ç´Â ´ÙÀ½ ÇÊÅÍ¸¦ È£Ãâ
 		chain.doFilter(request, response); 
 		
-		// 3. í›„ì²˜ë¦¬ ìž‘ì—…
-		HttpServletRequest req = (HttpServletRequest) request;
-		String referer = req.getHeader("referer");  //ì–´ë””ì„œ ìš”ì²­í–ˆëŠ”ì§€ ì•Œìˆ˜ ìžˆë‹¤.
-		String method = req.getMethod(); //ìš”ì²­í•œ ë©”ì„œë“œë„ ì•Œìˆ˜ ìžˆë‹¤.
-		System.out.print("["+referer+"]->+"+method+"["+req.getRequestURI()+"]");
-		System.out.println(" ì†Œìš”ì‹œê°„="+(System.currentTimeMillis()-startTime)+"ms");
+		// 3. ÈÄÃ³¸® ÀÛ¾÷
+		HttpServletRequest req = (HttpServletRequest)request;
+		String referer = req.getHeader("referer");
+		String method = req.getMethod();
+		System.out.println("["+referer+"] -> " + method + "[" + req.getRequestURI() + "]");
+		System.out.println(" ¼Ò¿ä½Ã°£="+(System.currentTimeMillis()-startTime)+"ms");
 	}
 
 	@Override
 	public void destroy() {
-		// ì •ë¦¬ ìž‘ì—…
+		// Á¤¸® ÀÛ¾÷
 	}
 
 }

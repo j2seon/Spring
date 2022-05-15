@@ -1,15 +1,12 @@
 package com.fastcampus.ch2;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,53 +23,50 @@ public class LoginController {
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		//1. ì„¸ì…˜ì„ ì¢…ë£Œí•˜ê³ 
+		// 1. ¼¼¼ÇÀ» Á¾·á
 		session.invalidate();
-		//2. í™ˆí™”ë©´ìœ¼ë¡œ ì´ë™
-		return "redirect:/"; 
+		// 2. È¨À¸·Î ÀÌµ¿
+		return "redirect:/";
 	}
 	
 	
 	@PostMapping("/login")
-	public String login(@CookieValue("id") String cookieId , String  id, String pwd, boolean rememberId, String toURL, HttpServletRequest request, HttpServletResponse response) throws Exception {
-						//@CookieValueëŠ” idë¼ëŠ” ì´ë¦„ê°€ì§„ì¿ í‚¤ê°’ì„ ì½ì–´ì„œ String cookieId ë¡œ ë„˜ê¹€
-		
-		//1. idì™€ pwdë¥¼ í™•ì¸
-		if(!logincheck(id,pwd)) {
-			//2-1 ì¼ì¹˜í•˜ì§€ ì•Šìœ¼ë©´ loginFormìœ¼ë¡œ ì´ë™
-			String msg = URLEncoder.encode("id ë˜ëŠ” passwordê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.", "UTF-8");
-		
+	public String login(@CookieValue("id") String cookieId, String id, String pwd,String toURL, boolean rememberId,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("id="+id);
+		System.out.println("pwd="+pwd);
+		System.out.println("rememberId="+rememberId);
+		// 1. ¾ÆÀÌµğ¿Í ÆĞ½º¿öµå È®ÀÎ
+		if(!loginCheck(id,pwd)) {
+			// 2-1 ÀÏÄ¡ÇÏÁö ¾ÊÀ¸¸é, loginFormÀ¸·Î ÀÌµ¿
+			String msg = URLEncoder.encode("id ¶Ç´Â pwd°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.","utf-8");
+	 		
 			return "redirect:/login/login?msg="+msg;
 		}
-
-		//2-2. idì™€ pwdê°€ ì¼ì¹˜í•˜ë©´ 
-		//ì„¸ì…˜ê°ì²´ë¥¼ ì–»ì–´ì™€ì„œ 
-		HttpSession session = request.getSession();
-		 //ì„¸ì…˜ê°ì²´ì— idë¥¼ ì €ì¥
-		 session.setAttribute("id",id);
+		// 2-2. ¾ÆÀÌµğ¿Í ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏ¸é,
+		// ¼¼¼Ç °´Ã¼ ¾ò¾î¿À±â
+		HttpSession session = request.getSession();	
+		// ¼¼¼Ç °´Ã¼¾Ö id¸¦ ÀúÀå
+		session.setAttribute("id",id);
+		
 		if(rememberId) {
-			//trueì´ë©´ ì¿ í‚¤ìƒì„±
-			//1. ì¿ í‚¤ë¥¼ ìƒì„±í•˜ê³ 
-			Cookie cookie = new Cookie("id", id);
-			//2. ì‘ë‹µì— ì €ì¥
+			// ÄíÅ°¸¦ »ı¼º
+			//1. ÄíÅ°¸¦ »ı¼º
+			Cookie cookie = new Cookie("id",id);  //ÀÓÆ÷Æ®Ãß°¡
 			response.addCookie(cookie);
 		}else {
-			//falseì´ë©´ ì¿ í‚¤ìƒì„± ì‚­ì œ
-			Cookie cookie = new Cookie("id", id);
-			cookie.setMaxAge(0);
+			// ÄíÅ°¸¦ »èÁ¦
+			Cookie cookie = new Cookie("id",id);  //ÀÓÆ÷Æ®Ãß°¡
+			cookie.setMaxAge(0);  //ÄíÅ°»èÁ¦
+			//		2. ÀÀ´ä¿¡ ÀúÀå
 			response.addCookie(cookie);
-
 		}
-			//3. í™ˆìœ¼ë¡œ ì´ë™
-		//String toURL = "/"; //ê¸°ë³¸ê°’
-		//nullì´ê±°ë‚˜ ë¹ˆë¬¸ìì—´ì¼ë•Œ > í™ˆìœ¼ë¡œ ê°€ê³  ê·¸ê²Œì•„ë‹ˆë©´ toURLë¡œ ì „ë‹¬ë°›ì€ ê°’ì´ ë“¤ì–´ê°„ë‹¤.
-		toURL= toURL==null||toURL.equals("") ? "/" : toURL;
-		
- 		return "redirect:"+toURL; 
+		toURL = toURL==null || toURL.equals("") ? "/" : toURL;
+
+		//		3. È¨À¸·Î ÀÌµ¿
+		return "redirect:"+toURL; 
 	}
 
-	private boolean logincheck(String id, String pwd) {
-		return "asdf".equals(id)&&"asdf".equals(pwd);
+	private boolean loginCheck(String id, String pwd) {
+		return "asdf".equals(id) && "1234".equals(pwd);
 	}
-	
 }

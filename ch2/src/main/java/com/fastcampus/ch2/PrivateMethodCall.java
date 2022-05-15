@@ -4,32 +4,25 @@ import java.lang.reflect.Method;
 
 public class PrivateMethodCall {
 	public static void main(String[] args) throws Exception {
-		//Hello hello = new Hello();
-		//hello.main(); //private
+//		Hello hello = new Hello();
+//		hello.main(); // privateÀÌ¶ó¼­ ¿ÜºÎ È£Ãâ ºÒ°¡
 		
+		// Reflection API¸¦ »ç¿ë - Å¬·¡½º Á¤º¸¸¦ ¾ò°í ´Ù·ê ¼ö ÀÖ´Â °­·ÂÇÑ ±â´ÉÁ¦°ø
+		// java.lang.reflectÆĞÅ°Áö¸¦ Á¦°ø
 		
-		/*
-		 * 
-		 * Reflection API
-		 * java.lang.reflect.
-		 * ìŠ¤í”„ë§ì—ì„œ ìì£¼ì‚¬ìš©í•œë‹¤!
-		 * 
-		 * */
-		
+		// HelloÅ¬·¡½ºÀÇ Class°´Ã¼(Å¬·¡½ºÀÇ Á¤º¸¸¦ ´ã°í ÀÖ´Â °´Ã¼)¸¦ ¾ò¾î¿Â´Ù.
 		Class helloClass = Class.forName("com.fastcampus.ch2.Hello");
-		Hello hello = (Hello) helloClass.newInstance(); 
 		
-		//Hello getDeclaredMethod main
+		// Class°´Ã¼°¡ °¡Áø Á¤º¸·Î °´Ã¼ »ı¼º
+		Hello hello = (Hello)helloClass.newInstance();
+		
+		// mainÀÌ¶ó´Â ¸Ş¼­µå Á¤º¸ °¡Á®¿À±â
 		Method main = helloClass.getDeclaredMethod("main");
 		
-		main.setAccessible(true);// private
+		// privateÀÎ main()À» È£Ãâ °¡´ÉÇÏ°Ô ÇÑ´Ù.
+		main.setAccessible(true);  
 		
-		main.invoke(hello); // hello.main()
-
-		
-		
-		
-		
-		
+		main.invoke(hello); //hello.main(); 
 	}
+
 }

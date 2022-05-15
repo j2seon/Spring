@@ -4,7 +4,6 @@ public class MyDate {
 	private int year;
 	private int month;
 	private int day;
-	
 	public int getYear() {
 		return year;
 	}
@@ -27,8 +26,5 @@ public class MyDate {
 	public String toString() {
 		return "MyDate [year=" + year + ", month=" + month + ", day=" + day + "]";
 	}
-	
-	
-	
 	
 }

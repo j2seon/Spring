@@ -1,7 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<%@ page import="java.net.URLDecoder"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page import="java.net.URLDecoder" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,15 +65,19 @@
             margin-bottom: 20px;
         }
         .sns-chk {
-            margin-top : 5px; "<c:url value='/login/login'/>"
+            margin-top : 5px; 
         }
     </style>
     <title>Register</title>
 </head>
-<body>		
-   <form action ="<c:url value='/register/save'/>" method="POST" onsubmit="return formCheck(this)">
+<body>
+<%--    <form action="<c:url value="/register/save"/>" method="POST" onsubmit="return formCheck(this)" > --%>
+
+   <form:form modelAttribute="user">
     <div class="title">Register</div>
-    <div id="msg" class="msg"> ${URLDecoder.decode(param.msg, "utf-8")} </div> 
+    
+<%--     <div id="msg" class="msg"> ${URLDecoder.decode(param.msg, "utf-8")} </div> --%>
+	<div id="msg" class="msg"><form:errors path="id"/></div>
     <label for="">아이디</label>
     <input class="input-field" type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합">
     <label for="">비밀번호</label>
@@ -84,14 +89,15 @@
     <label for="">생일</label>
     <input class="input-field" type="text" name="birth" placeholder="2020/12/31">
     <label for="">취미</label>
-    <input class="input-field" type="text" name="hobby">
+    <input class="input-field" type="text" name="hobby" >
     <div class="sns-chk">
         <label><input type="checkbox" name="sns" value="facebook"/>페이스북</label>
         <label><input type="checkbox" name="sns" value="kakaotalk"/>카카오톡</label>
         <label><input type="checkbox" name="sns" value="instagram"/>인스타그램</label>
     </div>
     <button>회원 가입</button>
-   </form> 
+   </form:form> 
+   
    <script>
        function formCheck(frm) {
             var msg ='';
@@ -99,16 +105,13 @@
             if(frm.id.value.length<3) {
                 setMessage('id의 길이는 3이상이어야 합니다.', frm.id);
                 return false;
-            }if(frm.pwd.value.length<3) {
-                setMessage('password의 길이는 3이상이어야 합니다.', frm.pwd);
-                return false;
             }
 
            return true;
        }
 
        function setMessage(msg, element){
-            document.getElementById("msg").innerHTML = `<i class="fa fa-exclamation-circle"> ${'${msg}'}'</i>`;
+            document.getElementById("msg").innerHTML = `<i class="fa fa-exclamation-circle"> ${'${msg}'}</i>`;
 
             if(element) {
                 element.select();

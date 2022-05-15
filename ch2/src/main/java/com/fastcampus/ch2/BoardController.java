@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BoardController {
 	@GetMapping("/list")
 	public String list(HttpServletRequest request) {
-		if(!loginCheck(request)) {//ë¡œê·¸ì¸í™”ë©´ì—ê²Œ getë°©ì‹ìœ¼ë¡œ urlì„ ë³´ë‚¸ë‹¤. 
-			return "redirect:/login/login?toURL="+request.getRequestURL(); //ë¡œê·¸ì¸ ì•ˆí–ˆìœ¼ë©´ ë¡œê·¸ì¸í™”ë©´ìœ¼ë¡œ ì´ë™í•œë‹¤.
-		}
-		return "boardList"; //í–ˆìœ¼ë©´ ê²Œì‹œíŒí™”ë©´ìœ¼ë¡œ ì´ë™
+		if(!loginCheck(request))
+			return "redirect:/login/login?toURL="+request.getRequestURL();  // ·Î±×ÀÎÀ» ¾ÈÇßÀ¸¸é ·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿
+		
+		return "boardList"; // ·Î±×ÀÎÀ» ÇÑ »óÅÂÀÌ¸é, °Ô½ÃÆÇ È­¸éÀ¸·Î ÀÌµ¿
 	}
 
 	private boolean loginCheck(HttpServletRequest request) {
-		//1. ì„¸ì…˜ì„ ì–»ì–´ì„œ
+		// 1. ¼¼¼ÇÀ» ¾ò¾î¼­
 		HttpSession session = request.getSession();
-		//2. ì„¸ì…˜ì— idê°€ ìˆëŠ”ì§€ í™•ì¸, ìˆìœ¼ë©´ trueë¥¼ ë°˜í™˜í•œë‹¤.
-
-		return session.getAttribute("id")!=null; 
+		// 2. ¼¼¼Ç¿¡ id°¡ ÀÖ´ÂÁö È®ÀÎ, ÀÖÀ¸¸é true¸¦ ¹İÈ¯
+		return session.getAttribute("id")!=null;
 	}
 }

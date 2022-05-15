@@ -58,13 +58,13 @@
          Java HTTP Connector: /docs/config/http.html
          Java AJP  Connector: /docs/config/ajp.html
          APR (HTTP/AJP) Connector: /docs/apr.html
-         Define a non-SSL/TLS HTTP/1.1 Connector on port 8181
+         Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
     <Connector connectionTimeout="20000" port="8282" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
-               port="8181" protocol="HTTP/1.1"
+               port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="8443" />
     -->
@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="MyFirstSpring" path="/app" reloadable="true" source="org.eclipse.jst.jee.server:MyFirstSpring"/><Context docBase="ch2" path="/ch2" reloadable="true" source="org.eclipse.jst.jee.server:ch2"/></Host>
+      <Context docBase="ch2my" path="/ch2my" reloadable="true" source="org.eclipse.jst.jee.server:ch2my"/><Context docBase="ch2_final" path="/ch2" reloadable="true" source="org.eclipse.jst.jee.server:ch2_final"/></Host>
     </Engine>
   </Service>
 </Server>

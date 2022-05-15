@@ -1,2 +1,2 @@
-<%@ page contentType="text/html;charset=utf-8" isErrorPage="true"%>
-[400] 잘못된 요청입니다 ,확인 후 다시 한번 요청해주세요.
+<%@ page contentType="text/html; charset=utf-8" isErrorPage="true" %>
+[400] 죄송합니다. 서버 장애입니다. 나중에 다시 시도해주세요.

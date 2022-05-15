@@ -14,7 +14,6 @@
 <h1>birth=${user.birth}</h1>
 <h1>sns=${user.sns}</h1>
 <h1>hobby=${user.hobby}</h1>
+
 </body>
 </html>
-
-<!-- paramvalues 가 있음 이건 배열로 받는 것!  -->
